@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "git": "https://github.com/NicolasAMontanez98/AA1_MONTANEZ_ORTIZ_NICOLASALEJANDRO",
-  "bitbucket": "git clone https://ucompensarnicomon-admin@bitbucket.org/ucompensarnicomon/aa1_montanez_ortiz_nicolasalejandro.git",
+  "bitbucket": "https://ucompensarnicomon-admin@bitbucket.org/ucompensarnicomon/aa1_montanez_ortiz_nicolasalejandro.git",
   "scripts": {
     "sass": "sass styles/styles.scss styles/styles.css",
     "sass:watch": "sass --watch styles/styles.scss styles/styles.css"
