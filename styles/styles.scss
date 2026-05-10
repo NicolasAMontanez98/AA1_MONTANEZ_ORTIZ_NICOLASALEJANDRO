@@ -1,0 +1,229 @@
+@use "sass:color";
+
+// ============================================================
+// Variables Sass
+// ============================================================
+$primary-color:      #FFC106;
+$dark-bg:            #1a1a2e;
+$light-bg:           #f8f9fa;
+$card-border-radius: 0.5rem;
+$transition-speed:   0.3s;
+
+// Colores para tema oscuro
+$dark-card-bg:    #2d2d44;
+$dark-text:       #e0e0e0;
+$dark-muted:      #a0a0b8;
+$dark-border:     #3d3d5c;
+$dark-input-bg:   #1e1e30;
+$dark-navbar-bg:  #0d0d1a;
+
+// ============================================================
+// Interpolaciones
+// ============================================================
+
+// 1 — Nombre de clase generado desde variable
+$accent-name: primary;
+
+.badge-#{$accent-name} {
+  background-color: $primary-color;
+  color: #212529;
+  font-weight: 600;
+}
+
+// Interpolación 2 — Nombre de propiedad CSS generado dinámicamente
+$border-side: bottom;
+
+.section-heading {
+  border-#{$border-side}: 3px solid $primary-color;
+  padding-#{$border-side}: 0.5rem;
+  margin-#{$border-side}: 1rem;
+}
+
+// ============================================================
+// Anidación de selectores
+// ============================================================
+
+// Navbar
+.navbar {
+  transition: background-color $transition-speed, border-color $transition-speed;
+
+  .navbar-brand {
+    letter-spacing: 0.3px;
+  }
+
+  .theme-toggle-btn {
+    border-radius: 50px;
+    font-size: 0.85rem;
+    padding: 4px 14px;
+    transition: all $transition-speed;
+  }
+}
+
+// Buscador
+.search-section {
+  transition: background-color $transition-speed;
+
+  .form-control {
+    &:focus {
+      box-shadow: 0 0 0 0.25rem rgba(255, 193, 6, 0.3);
+      border-color: $primary-color;
+    }
+  }
+}
+
+// Pestañas de navegación
+.nav-pills {
+  .nav-link {
+    transition: all $transition-speed;
+
+    &.active {
+      background-color: $primary-color !important;
+      color: #212529 !important;
+    }
+
+    &:hover:not(.active) {
+      background-color: rgba(0, 0, 0, 0.05);
+    }
+  }
+}
+
+// Cards de películas
+.card {
+  border-radius: $card-border-radius;
+  transition: transform $transition-speed, box-shadow $transition-speed;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.18) !important;
+  }
+
+  .card-body {
+    .card-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+  }
+}
+
+// Footer
+footer {
+  transition: background-color $transition-speed;
+
+  a {
+    transition: opacity $transition-speed;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+}
+
+// ============================================================
+// Tema oscuro — body[data-theme="dark"]
+// ============================================================
+body[data-theme="dark"] {
+  background-color: $dark-bg !important;
+  color: $dark-text;
+
+  .navbar {
+    background-color: $dark-navbar-bg !important;
+    border-bottom: 1px solid $dark-border;
+  }
+
+  .bg-dark {
+    background-color: $dark-navbar-bg !important;
+  }
+
+  .search-section {
+    background-color: color.adjust($dark-navbar-bg, $lightness: 5%) !important;
+  }
+
+  .form-control,
+  .form-select {
+    background-color: $dark-input-bg;
+    border-color: $dark-border;
+    color: $dark-text;
+
+    &::placeholder {
+      color: $dark-muted;
+    }
+
+    &:focus {
+      background-color: $dark-input-bg;
+      color: $dark-text;
+    }
+  }
+
+  .card {
+    background-color: $dark-card-bg;
+    border-color: $dark-border !important;
+    color: $dark-text;
+
+    .text-muted {
+      color: $dark-muted !important;
+    }
+  }
+
+  .nav-pills {
+    .nav-link {
+      color: $dark-text !important;
+
+      &.active {
+        background-color: $primary-color !important;
+        color: #212529 !important;
+      }
+
+      &:hover:not(.active) {
+        background-color: rgba(255, 255, 255, 0.08);
+      }
+    }
+  }
+
+  footer {
+    background-color: $dark-navbar-bg !important;
+  }
+
+  .text-muted {
+    color: $dark-muted !important;
+  }
+
+  .text-secondary {
+    color: $dark-muted !important;
+  }
+
+  .btn-outline-light {
+    border-color: $dark-border;
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.08);
+    }
+  }
+
+  .spinner-border {
+    color: $primary-color !important;
+  }
+
+  .alert-danger {
+    background-color: #3d1a1a;
+    border-color: #7a2020;
+    color: #f8b4b4;
+  }
+
+  .bg-light {
+    background-color: $dark-bg !important;
+  }
+
+  .border-bottom {
+    border-color: $dark-border !important;
+  }
+
+  .bg-info-subtle {
+    background-color: #1e3040 !important;
+    color: $dark-text !important;
+  }
+
+  .section-heading {
+    border-bottom-color: $primary-color;
+    color: $dark-text;
+  }
+}

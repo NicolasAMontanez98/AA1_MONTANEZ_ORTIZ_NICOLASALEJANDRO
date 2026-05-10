@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Detalle - MovieActivity</title>
+    <link rel="icon" href="./assets/logo.png" type="image/png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="./styles/styles.css">
+</head>
+
+<body class="bg-light">
+    <nav class="navbar navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index.html">🎥 MovieActivity</a>
+            <div class="d-flex gap-2">
+                <button class="theme-toggle-btn btn btn-outline-light btn-sm" id="themeToggle">🌙 Oscuro</button>
+                <a href="index.html" class="btn btn-outline-light btn-sm">🔙 Volver</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Spinner de carga -->
+    <div id="loadingSpinner" class="text-center py-5">
+        <div class="spinner-border text-dark" role="status">
+            <span class="visually-hidden">Cargando...</span>
+        </div>
+        <p class="text-muted mt-2">Cargando película...</p>
+    </div>
+
+    <!-- Contenido de la película -->
+    <div id="movieContent" class="d-none">
+        <div id="backdropContainer" style="max-height:320px;overflow:hidden;background:#111">
+            <img id="backdropImg" src="" alt="Backdrop"
+                class="w-100 d-block" style="object-fit:cover;opacity:0.65;max-height:320px">
+        </div>
+        <div class="container mt-4">
+            <div class="row">
+                <div class="col-12 col-sm-4 col-md-3 mb-4">
+                    <img id="moviePoster" src="" alt="Póster"
+                        class="img-fluid rounded shadow w-100" style="max-height:420px;object-fit:cover">
+                    <div class="mt-3">
+                        <button class="btn btn-outline-danger w-100" id="favBtn">♥️ Agregar a favoritos</button>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-8 col-md-9">
+                    <h2 id="movieTitle" class="fw-bold"></h2>
+                    <p class="text-muted fst-italic" id="movieTagline"></p>
+                    <div class="d-flex flex-wrap gap-2 mb-3">
+                        <span class="badge bg-danger fs-6" id="movieYear"></span>
+                        <span class="badge bg-warning text-dark fs-6">&#9733; <span id="movieRating"></span></span>
+                        <span class="badge bg-info-subtle text-dark fs-6" id="movieRuntime"></span>
+                    </div>
+                    <div class="mb-3" id="movieGenres"></div>
+                    <h5>Sinopsis</h5>
+                    <p id="movieOverview" class="text-secondary"></p>
+                </div>
+            </div>
+        </div>
+        <div class="container mt-2">
+            <h5 class="border-bottom pb-2 mb-3 section-heading">Reparto</h5>
+            <div class="row" id="castContainer"></div>
+        </div>
+        <div class="container mt-4" id="imagesSection">
+            <h5 class="border-bottom pb-2 mb-3 section-heading">Fotos</h5>
+            <div class="row" id="imagesContainer"></div>
+        </div>
+        <div class="container mt-4">
+            <h5 class="border-bottom pb-2 mb-3 section-heading">Mi reseña</h5>
+            <div id="reviewSuccess" class="alert alert-success d-none">💾 ¡Reseña guardada correctamente!</div>
+            <form id="reviewForm">
+                <div class="mb-3">
+                    <label for="userRating" class="form-label fw-bold">Mi puntuación</label>
+                    <select class="form-select" id="userRating">
+                        <option value="">Sin puntuación</option>
+                        <option value="10">10 &mdash; Obra maestra</option>
+                        <option value="9">9 &mdash; Excelente</option>
+                        <option value="8">8 &mdash; Muy buena</option>
+                        <option value="7">7 &mdash; Buena</option>
+                        <option value="6">6 &mdash; Regular</option>
+                        <option value="5">5 &mdash; Mediocre</option>
+                        <option value="4">4 &mdash; Mala</option>
+                        <option value="3">3 &mdash; Muy mala</option>
+                        <option value="2">2 &mdash; Terrible</option>
+                        <option value="1">1 &mdash; Pésima</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="userReview" class="form-label fw-bold">Mi reseña</label>
+                    <textarea class="form-control" id="userReview" rows="4"
+                        placeholder="Escribe tu reseña aquí..."></textarea>
+                </div>
+                <button type="submit" class="btn btn-dark">💾 Guardar reseña</button>
+            </form>
+        </div>
+        <div class="container mt-4 mb-5">
+            <h5 class="border-bottom pb-2 mb-3 section-heading">Comentarios</h5>
+            <div id="commentsContainer" class="mb-4"></div>
+            <h6 class="fw-bold">Agregar comentario</h6>
+            <form id="commentForm">
+                <div class="mb-3">
+                    <input type="text" class="form-control" id="commentAuthor" placeholder="Tu nombre" required maxlength="60">
+                </div>
+                <div class="mb-3">
+                    <textarea class="form-control" id="commentText" rows="3" placeholder="Tu comentario..." required maxlength="1000"></textarea>
+                </div>
+                <button type="submit" class="btn btn-dark">💬 Publicar comentario</button>
+            </form>
+        </div>
+    </div>
+
+    <footer class="bg-dark text-center text-white py-3 mt-5">
+        <small>MovieActivity &mdash; Datos tomados de <a href="https://www.themoviedb.org" class="text-warning text-decoration-none" target="_blank">The Movie Database</a></small>
+        <br/>
+        <small>Página web creada usando <a href="https://getbootstrap.com/" class="text-danger text-decoration-none" target="_blank">Bootstrap</a></small>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+    <script src="./js/api.js"></script>
+    <script src="./js/storage.js"></script>
+    <script src="./js/detail.js"></script>
+    <script src="./js/theme.js"></script>
+</body>
+
+</html>
